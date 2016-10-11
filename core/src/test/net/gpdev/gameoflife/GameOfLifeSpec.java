@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class GameOfLifeSpec {
 
@@ -26,11 +27,24 @@ public class GameOfLifeSpec {
     }
 
     @Test
-    public void WhenLiveCellWithNoNeighborsThenCellDies() throws Exception {
+    public void whenLiveCellWithNoNeighborsThenCellDies() throws Exception {
         final int x = 4;
         final int y = 7;
         game.populateCell(x, y);
         game.tick();
         assertFalse(game.isCellPopulated(x, y));
+    }
+
+    @Test
+    public void whenEmptyCellWithThreeNeighborsThenCellBecomesPopulated() throws Exception {
+        final int x = 6;
+        final int y = 5;
+        game.populateCell(x - 1, y);
+        game.populateCell(x + 1, y);
+        game.populateCell(x + 1, y + 1);
+
+        game.tick();
+
+        assertTrue(game.isCellPopulated(x, y));
     }
 }
