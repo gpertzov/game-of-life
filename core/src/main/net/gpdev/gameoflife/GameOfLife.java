@@ -18,6 +18,6 @@ public class GameOfLife {
     }
 
     public void tick() {
-
+        current = next;
     }
 }
