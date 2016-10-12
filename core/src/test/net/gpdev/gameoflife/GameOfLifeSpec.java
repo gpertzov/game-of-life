@@ -47,4 +47,18 @@ public class GameOfLifeSpec {
 
         assertTrue(game.isCellPopulated(x, y));
     }
+
+    @Test
+    public void whenLiveCellWithTwoNeighborsThenCellSurvives() throws Exception {
+        final int x = 3;
+        final int y = 9;
+        game.populateCell(x, y);
+
+        game.populateCell(x + 1, y);
+        game.populateCell(x - 1, y);
+
+        game.tick();
+
+        assertTrue(game.isCellPopulated(x, y));
+    }
 }
