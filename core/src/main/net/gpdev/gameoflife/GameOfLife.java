@@ -30,6 +30,11 @@ public class GameOfLife {
                         next.set(i, j);
                     }
                 }
+                else {
+                    if (current.numNeighbors(i, j) == 2) {
+                        next.set(i, j);
+                    }
+                }
             }
         }
         current = next;
