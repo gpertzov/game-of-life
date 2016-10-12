@@ -31,7 +31,8 @@ public class GameOfLife {
                     }
                 }
                 else {
-                    if (current.numNeighbors(i, j) == 2) {
+                    final int numNeighbors = current.numNeighbors(i, j);
+                    if (numNeighbors == 2 || numNeighbors == 3) {
                         next.set(i, j);
                     }
                 }
