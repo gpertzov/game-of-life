@@ -40,4 +40,9 @@ public class GameOfLife {
         }
         current = next;
     }
+
+    @Override
+    public String toString() {
+        return current.toString();
+    }
 }

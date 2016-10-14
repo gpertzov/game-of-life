@@ -36,6 +36,16 @@ public class GameOfLifeSpec {
     }
 
     @Test
+    public void whenLiveCellWithOneNeighborThenCellDies() throws Exception {
+        final int x = 4;
+        final int y = 7;
+        game.populateCell(x, y);
+        game.populateCell(x, y + 1);
+        game.tick();
+        assertFalse(game.isCellPopulated(x, y));
+    }
+
+    @Test
     public void whenEmptyCellWithThreeNeighborsThenCellBecomesPopulated() throws Exception {
         final int x = 6;
         final int y = 5;
@@ -70,10 +80,40 @@ public class GameOfLifeSpec {
 
         game.populateCell(x + 1, y);
         game.populateCell(x - 1, y);
-        game.populateCell(x , y + 1);
+        game.populateCell(x, y + 1);
 
         game.tick();
 
         assertTrue(game.isCellPopulated(x, y));
+    }
+
+    @Test
+    public void whenLiveCellWithMoreThanThreeNeighborsThenCellDies() throws Exception {
+        final int x = 4;
+        final int y = 2;
+
+        final int[][] neighbors = {
+                {x - 1, y},
+                {x + 1, y},
+                {x, y - 1},
+                {x, y + 1},
+                {x - 1, y - 1},
+                {x - 1, y + 1},
+                {x + 1, y - 1},
+                {x + 1, y + 1}
+        };
+
+        for (int i = 4; i <= 8; i++) {
+            game = new GameOfLife(X_DIM, Y_DIM);
+            game.populateCell(x, y);
+            for (int j = 0; j < i; j++) {
+                game.populateCell(neighbors[j][0], neighbors[j][1]);
+            }
+            game.tick();
+
+            assertFalse(
+                    String.format("Cell (%d, %d) should not be populated:\n%s", x, y, game.toString()),
+                    game.isCellPopulated(x, y));
+        }
     }
 }

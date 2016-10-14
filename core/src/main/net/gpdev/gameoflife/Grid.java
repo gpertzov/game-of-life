@@ -68,4 +68,16 @@ public class Grid {
 
         return neighbors;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < yDim; i++) {
+            for (int j = 0; j < xDim; j++) {
+                sb.append(isEmpty(j, i) ? ". " : "* ");
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
+    }
 }
