@@ -28,17 +28,23 @@ public class GameOfLife {
                 if (current.isEmpty(i, j)) {
                     if (current.numNeighbors(i, j) == 3) {
                         next.set(i, j);
+                    } else {
+                        next.unset(i, j);
                     }
-                }
-                else {
+                } else {
                     final int numNeighbors = current.numNeighbors(i, j);
                     if (numNeighbors == 2 || numNeighbors == 3) {
                         next.set(i, j);
+                    } else {
+                        next.unset(i, j);
                     }
                 }
             }
         }
+
+        final Grid prev = current;
         current = next;
+        next = prev;
     }
 
     @Override
