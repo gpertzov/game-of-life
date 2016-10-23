@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import net.gpdev.gameoflife.GameOfLife;
 
@@ -24,6 +26,7 @@ public class GameScreen extends ScreenAdapter {
     private static final Color CELL_COLOR = Color.GREEN;
 
     private GameOfLife game;
+    private Viewport viewport;
     private OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
 
@@ -35,13 +38,10 @@ public class GameScreen extends ScreenAdapter {
         camera = new OrthographicCamera();
         shapeRenderer = new ShapeRenderer();
 
-        // Set-up "Y Down" camera
-        final int width = Gdx.graphics.getWidth();
-        final int height = Gdx.graphics.getHeight();
-        final float aspectRatio = (float) height / width;
-        final float viewportWidth = GAME_WIDTH;
-        final float viewportHeight = viewportWidth * aspectRatio;
-        camera.setToOrtho(true, viewportWidth, viewportHeight);
+        // Setup "Y Down" camera
+        viewport = new FitViewport(GAME_WIDTH, GAME_HEIGHT, camera);
+        camera.setToOrtho(true);
+        viewport.apply(true);
 
         game.populateCell(0, 0);
     }
