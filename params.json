@@ -1,6 +1,6 @@
 {
   "name": "Game of Life GDX",
   "tagline": "Practicing TDD & libGDX by implementing Conway's \"Game of Life\"",
-  "body": "Practicing TDD &amp; [libGDX](https://libgdx.badlogicgames.com/) by implementing [Conway's \"Game of Life\"](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)\r\n",
+  "body": "Practicing TDD &amp; [libGDX](https://libgdx.badlogicgames.com/) by implementing [Conway's \"Game of Life\"](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)\r\n\r\n![Screens](https://gpertzov.github.io/game-of-life/img/GoL_gpdev_net.gif)\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
