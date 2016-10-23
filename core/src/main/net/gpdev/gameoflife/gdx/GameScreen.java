@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import net.gpdev.gameoflife.GameOfLife;
@@ -39,11 +39,18 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer = new ShapeRenderer();
 
         // Setup "Y Down" camera
-        viewport = new FitViewport(GAME_WIDTH, GAME_HEIGHT, camera);
+        viewport = new StretchViewport(GAME_WIDTH, GAME_HEIGHT, camera);
         camera.setToOrtho(true);
         viewport.apply(true);
 
         game.populateCell(0, 0);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        viewport.update(width, height);
+        viewport.apply(true);
     }
 
     @Override
