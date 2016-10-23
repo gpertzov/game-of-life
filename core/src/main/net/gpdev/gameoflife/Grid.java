@@ -28,7 +28,7 @@ public class Grid {
 
     private void throwIfOutOfBounds(int x, int y) {
         if (isOutOfBounds(x, y)) {
-            throw new IllegalArgumentException(String.format("Position (%d, %d) is out of grid bounds", x, y));
+            throw new IllegalArgumentException("Position (" + x + ", " + y + ") is out of grid bounds");
         }
     }
 
