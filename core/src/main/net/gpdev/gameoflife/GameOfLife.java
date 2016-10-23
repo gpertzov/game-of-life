@@ -1,5 +1,7 @@
 package net.gpdev.gameoflife;
 
+import java.util.Random;
+
 public class GameOfLife {
     private final int xDim;
     private final int yDim;
@@ -14,6 +16,17 @@ public class GameOfLife {
         next = new Grid(xDim, yDim);
     }
 
+    public void randomize(final long seed) {
+        Random rand = new Random(seed);
+        for (int x = 0; x < xDim; x++) {
+            for (int y = 0; y < yDim; y++) {
+                if (rand.nextBoolean()) {
+                    populateCell(x, y);
+                }
+            }
+        }
+    }
+
     public void populateCell(int x, int y) {
         current.set(x, y);
     }
@@ -23,20 +36,20 @@ public class GameOfLife {
     }
 
     public void tick() {
-        for (int i = 0; i < xDim; i++) {
-            for (int j = 0; j < yDim; j++) {
-                if (current.isEmpty(i, j)) {
-                    if (current.numNeighbors(i, j) == 3) {
-                        next.set(i, j);
+        for (int x = 0; x < xDim; x++) {
+            for (int y = 0; y < yDim; y++) {
+                if (current.isEmpty(x, y)) {
+                    if (current.numNeighbors(x, y) == 3) {
+                        next.set(x, y);
                     } else {
-                        next.unset(i, j);
+                        next.unset(x, y);
                     }
                 } else {
-                    final int numNeighbors = current.numNeighbors(i, j);
+                    final int numNeighbors = current.numNeighbors(x, y);
                     if (numNeighbors == 2 || numNeighbors == 3) {
-                        next.set(i, j);
+                        next.set(x, y);
                     } else {
-                        next.unset(i, j);
+                        next.unset(x, y);
                     }
                 }
             }

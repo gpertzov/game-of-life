@@ -30,6 +30,9 @@ public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
 
+    private static final float TICK_TIME_SEC = 1f;
+    private float timeToTick = TICK_TIME_SEC;
+
     @Override
     public void show() {
         super.show();
@@ -43,7 +46,7 @@ public class GameScreen extends ScreenAdapter {
         camera.setToOrtho(true);
         viewport.apply(true);
 
-        game.populateCell(0, 0);
+        game.randomize(System.currentTimeMillis());
     }
 
     @Override
@@ -86,6 +89,12 @@ public class GameScreen extends ScreenAdapter {
             }
         }
         shapeRenderer.end();
+
+        timeToTick -= delta;
+        if (timeToTick <= 0) {
+            game.tick();
+            timeToTick = TICK_TIME_SEC;
+        }
     }
 
     @Override
