@@ -17,8 +17,8 @@ import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType.Line;
 public class GameScreen extends ScreenAdapter {
 
     // Game board dimensions in world units
-    private static final int GAME_WIDTH = 40;
-    private static final int GAME_HEIGHT = 30;
+    private static final int GAME_WIDTH = 80;
+    private static final int GAME_HEIGHT = 60;
 
     // Colors
     private static final Color BG_COLOR = Color.GRAY;
@@ -30,7 +30,7 @@ public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
 
-    private static final float TICK_TIME_SEC = 1f;
+    private static final float TICK_TIME_SEC = 0.5f;
     private float timeToTick = TICK_TIME_SEC;
 
     @Override
